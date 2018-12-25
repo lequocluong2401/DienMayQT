@@ -20,14 +20,14 @@ namespace DienMayQT.Areas.Admin.Controllers
         public ActionResult Index()
         {
         
-
+            var product = db.Products.OrderByDescending(x => x.ID).ToList();
             if (Session["Username"] != null)
             {
-                return View();
+                return View(product);
             }
             else
             {
-                return RedirectToAction("Login", "Acc", new { area = "Admin" });
+                return RedirectToAction("Login");
             }
         }
         [HttpGet]
