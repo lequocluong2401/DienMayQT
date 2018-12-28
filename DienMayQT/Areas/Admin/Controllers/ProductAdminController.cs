@@ -32,7 +32,7 @@ namespace DienMayQT.Areas.Admin.Controllers
             }
         }
             // GET: /BangSanPham/Details/5
-            public FileResult Details(string id)
+            public FileResult Details(int id)
         {
             var path = Server.MapPath("~/App_Data/" + id);
             return File(path, "images");
@@ -40,10 +40,15 @@ namespace DienMayQT.Areas.Admin.Controllers
        
         public ActionResult Create()
         {
-            //ViewBag.ProductTypeID = new SelectList(db.ProductTypes, "ID", "ProductTypeName");
-            ViewBag.ProductType = db.ProductType.OrderByDescending(x => x.ID).ToList();
-
-            return View();
+            ViewBag.ProductTypeID = new SelectList(db.ProductType.OrderByDescending(x => x.ID).ToList(), "ID", "ProductTypeName");
+            if (Session["Username"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         // POST: /BangSanPham/Create
@@ -53,14 +58,12 @@ namespace DienMayQT.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Product model)
         {
-            //model.Avatar = "~/Image/" + model.ID;
-            //CheckBangSanPham(model);
-            model.Status = true;
+            CheckBangSanPham(model);
             if (ModelState.IsValid)
             {
                 using (var scope = new TransactionScope())
                 {
-                    
+
                     db.Product.Add(model);
                     db.SaveChanges();
 
@@ -75,12 +78,13 @@ namespace DienMayQT.Areas.Admin.Controllers
                     {
                         ModelState.AddModelError("HinhAnh", "Chưa có hình sản phẩm");
                     }
-                scope.Complete(); // approve for transaction
-                return RedirectToAction("Index");
+                    scope.Complete(); // approve for transaction
+                    return RedirectToAction("Index");
                 }
             }
             ViewBag.ProductType = db.ProductType.OrderByDescending(x => x.ID).ToList();
             return View(model);
+
         }
         private void CheckBangSanPham(Product model)
         {
@@ -90,6 +94,8 @@ namespace DienMayQT.Areas.Admin.Controllers
                 ModelState.AddModelError("SalePrice", "Giá bán phải lớn hơn giá gốc!");
             if (model.InstallmentPrice < model.OriginPrice)
                 ModelState.AddModelError("InstallmentPrice", "Giá góp phải lớn hơn giá gốc!");
+            if (model.Quantity < 0)
+                ModelState.AddModelError("Quantity", "Số lượng phải lớn hơn 0");
         }
         [HttpGet]
         public ActionResult Edit(int id)
@@ -115,7 +121,7 @@ namespace DienMayQT.Areas.Admin.Controllers
         //[ValidateAntiForgeryToken]
         public ActionResult Edit(Product model)
         {
-            //CheckBangSanPham(model);
+            CheckBangSanPham(model);
             if (ModelState.IsValid)
             {
                 using (var scope = new TransactionScope())
