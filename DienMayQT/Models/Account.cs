@@ -14,8 +14,9 @@ namespace DienMayQT.Models
     
     public partial class Account
     {
-        public string Usename { get; set; }
-        public string Password { get; set; }
-        public string Fullname { get; set; }
+        public int ID { get; set; }
+        public string UserName { get; set; }
+        public string PassWord { get; set; }
+        public string FullName { get; set; }
     }
 }

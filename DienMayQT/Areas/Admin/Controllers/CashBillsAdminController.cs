@@ -12,7 +12,7 @@ namespace DienMayQT.Areas.Admin.Controllers
 {
     public class CashBillsAdminController : Controller
     {
-        private DmQT06Entities db = new DmQT06Entities();
+        private DmQT06Entities1 db = new DmQT06Entities1();
 
         private void Check(CashBill model)
         {

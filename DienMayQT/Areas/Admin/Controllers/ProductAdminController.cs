@@ -15,7 +15,7 @@ namespace DienMayQT.Areas.Admin.Controllers
 {
     public class ProductAdminController : Controller
     {
-        DmQT06Entities db = new DmQT06Entities();
+        DmQT06Entities1 db = new DmQT06Entities1();
         //
         // GET: /Admin/ProductAdmin/
         public ActionResult Index()
@@ -179,14 +179,14 @@ namespace DienMayQT.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (DmQT06Entities db = new DmQT06Entities())
+                using (DmQT06Entities1 db = new DmQT06Entities1())
                 {
-                    var obj = db.Account.Where(a => a.Usename.Equals(acc.Usename) && a.Password.Equals(acc.Password)).FirstOrDefault();
+                    var obj = db.Account.Where(a => a.UserName.Equals(acc.UserName) && a.PassWord.Equals(acc.PassWord)).FirstOrDefault();
 
                     if (obj != null)
                     {
-                        Session["Username"] = obj.Usename.ToString();
-                        Session["FullName"] = obj.Fullname.ToString();
+                        Session["Username"] = obj.UserName.ToString();
+                        Session["FullName"] = obj.FullName.ToString();
                         return RedirectToAction("Index");
                     }
                 }

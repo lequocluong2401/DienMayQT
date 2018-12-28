@@ -12,7 +12,7 @@ namespace DienMayQT.Areas.Admin.Controllers
 {
     public class InstallmentBillsController : Controller
     {
-        private DmQT06Entities db = new DmQT06Entities();
+        private DmQT06Entities1 db = new DmQT06Entities1();
 
         // GET: Admin/InstallmentBills
         public ActionResult Index()

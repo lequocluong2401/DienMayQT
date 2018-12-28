@@ -12,88 +12,95 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.ID)
+<div class="form-horizontal">
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.ID)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ProductCode, "Mã SP", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.ProductCode, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ProductCode)
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ProductCode, "Mã SP", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.ProductCode, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ProductCode)
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ProductName, "Tên sản phẩm", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ProductName)
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ProductName, "Tên sản phẩm", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ProductName)
         </div>
+    </div>
 
-        <div class="form-group">
-            @*@Html.LabelFor(model => model.ProductTypeID, "Loại", new { @class = "control-label col-md-2" })
+    <div class="form-group">
+        @*@Html.LabelFor(model => model.ProductTypeID, "Loại", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.ProductTypeID, (IEnumerable<SelectListItem>)ViewData["ProductTypeID"], new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ProductTypeID)
             </div>*@
-            <div class="input-group mb-3">
-                @Html.LabelFor(model => model.ProductTypeID, "ProductTypeID", new { @class = "control-label col-md-2" }) :
-                <div class="col-md-10">
-                    @Html.DropDownList("ProductTypeID", new SelectList(ViewBag.ProductType, "ID", "ProductTypeName"))
-                    @Html.ValidationMessageFor(model => model.ProductTypeID)
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SalePrice, "Giá bán", new { @class = "control-label col-md-2" })
+        <div class="input-group mb-3">
+            @Html.LabelFor(model => model.ProductTypeID, "ProductTypeID", new { @class = "control-label col-md-2" }) :
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.SalePrice, new { @class = "form-control", type = "number" })
-                @Html.ValidationMessageFor(model => model.SalePrice)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.OriginPrice, "Giá gốc", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.OriginPrice, new { @class = "form-control", type = "number" })
-                @Html.ValidationMessageFor(model => model.OriginPrice)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.InstallmentPrice, "Giá góp", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.InstallmentPrice, new { @class = "form-control", type = "number" })
-                @Html.ValidationMessageFor(model => model.InstallmentPrice)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Quantity, "Số lượng", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Quantity, new { @class = "form-control", type = "number" })
-                @Html.ValidationMessageFor(model => model.Quantity)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label("HinhAnh", "Hình sản phẩm", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBox("HinhAnh", null, new { type = "file", onchange = "readURL(this);", @class = "form-control" })
-                @Html.ValidationMessage("HinhAnh")
-                <img style="width:100px" id="HinhSP" src="@Url.Action("Details", new { id = Model.ID })" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                @Html.DropDownList("ProductTypeID", new SelectList(ViewBag.ProductType, "ID", "ProductTypeName"))
+                @Html.ValidationMessageFor(model => model.ProductTypeID)
             </div>
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SalePrice, "Giá bán", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.SalePrice, new { @class = "form-control", type = "number" })
+            @Html.ValidationMessageFor(model => model.SalePrice)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.OriginPrice, "Giá gốc", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.OriginPrice, new { @class = "form-control", type = "number" })
+            @Html.ValidationMessageFor(model => model.OriginPrice)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.InstallmentPrice, "Giá góp", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.InstallmentPrice, new { @class = "form-control", type = "number" })
+            @Html.ValidationMessageFor(model => model.InstallmentPrice)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Quantity, "Số lượng", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Quantity, new { @class = "form-control", type = "number" })
+            @Html.ValidationMessageFor(model => model.Quantity)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("HinhAnh", "Hình sản phẩm", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("HinhAnh", null, new { type = "file", onchange = "readURL(this);", @class = "form-control" })
+            @Html.ValidationMessage("HinhAnh")
+            <img style="width:100px" id="HinhSP" src="@Url.Action("Details", new { id = Model.ID })" />
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Status)
+            @Html.ValidationMessageFor(model => model.Status)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
 }
 
 <div>
