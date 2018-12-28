@@ -13,10 +13,10 @@ namespace DienMayQT.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DIENMAYQUYETTIENEntities : DbContext
+    public partial class DmQT06Entities : DbContext
     {
-        public DIENMAYQUYETTIENEntities()
-            : base("name=DIENMAYQUYETTIENEntities")
+        public DmQT06Entities()
+            : base("name=DmQT06Entities")
         {
         }
     
@@ -25,13 +25,14 @@ namespace DienMayQT.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<CashBill> CashBills { get; set; }
-        public virtual DbSet<CashBillDetail> CashBillDetails { get; set; }
-        public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<InstallmentBill> InstallmentBills { get; set; }
-        public virtual DbSet<InstallmentBillDetail> InstallmentBillDetails { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<ProductType> ProductTypes { get; set; }
-        public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<Account> Account { get; set; }
+        public virtual DbSet<CashBill> CashBill { get; set; }
+        public virtual DbSet<CashBillDetail> CashBillDetail { get; set; }
+        public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<InstallmentBill> InstallmentBill { get; set; }
+        public virtual DbSet<InstallmentBillDetail> InstallmentBillDetail { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
+        public virtual DbSet<ProductType> ProductType { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

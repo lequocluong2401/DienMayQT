@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DIENMAYQUYETTIENModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DmQT06Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="Usename" />
@@ -97,6 +97,16 @@
           <Property Name="ProductTypeCode" Type="varchar" MaxLength="3" Nullable="false" />
           <Property Name="ProductTypeName" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <Association Name="FK_CashBillDetail_CashBill">
           <End Role="CashBill" Type="Self.CashBill" Multiplicity="1" />
           <End Role="CashBillDetail" Type="Self.CashBillDetail" Multiplicity="*" />
@@ -169,7 +179,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DIENMAYQUYETTIENModelStoreContainer">
+        <EntityContainer Name="DmQT06ModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CashBill" EntityType="Self.CashBill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CashBillDetail" EntityType="Self.CashBillDetail" Schema="dbo" store:Type="Tables" />
@@ -178,6 +188,7 @@
           <EntitySet Name="InstallmentBillDetail" EntityType="Self.InstallmentBillDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CashBillDetail_CashBill" Association="Self.FK_CashBillDetail_CashBill">
             <End Role="CashBill" EntitySet="CashBill" />
             <End Role="CashBillDetail" EntitySet="CashBillDetail" />
@@ -203,10 +214,19 @@
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="DIENMAYQUYETTIENModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="DmQT06Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Usename" />
+          </Key>
+          <Property Name="Usename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
         <EntityType Name="CashBill">
           <Key>
             <PropertyRef Name="ID" />
@@ -220,7 +240,7 @@
           <Property Name="Shipper" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Note" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="GrandTotal" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CashBillDetails" Relationship="Self.FK_CashBillDetail_CashBill" FromRole="CashBill" ToRole="CashBillDetail" />
+          <NavigationProperty Name="CashBillDetail" Relationship="Self.FK_CashBillDetail_CashBill" FromRole="CashBill" ToRole="CashBillDetail" />
         </EntityType>
         <EntityType Name="CashBillDetail">
           <Key>
@@ -244,7 +264,7 @@
           <Property Name="PhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="YearOfBirth" Type="Int32" />
-          <NavigationProperty Name="InstallmentBills" Relationship="Self.FK_InstallmentBill_Customer" FromRole="Customer" ToRole="InstallmentBill" />
+          <NavigationProperty Name="InstallmentBill" Relationship="Self.FK_InstallmentBill_Customer" FromRole="Customer" ToRole="InstallmentBill" />
         </EntityType>
         <EntityType Name="InstallmentBill">
           <Key>
@@ -262,7 +282,7 @@
           <Property Name="Taken" Type="Int32" Nullable="false" />
           <Property Name="Remain" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_InstallmentBill_Customer" FromRole="InstallmentBill" ToRole="Customer" />
-          <NavigationProperty Name="InstallmentBillDetails" Relationship="Self.FK_InstallmentBillDetail_InstallmentBill" FromRole="InstallmentBill" ToRole="InstallmentBillDetail" />
+          <NavigationProperty Name="InstallmentBillDetail" Relationship="Self.FK_InstallmentBillDetail_InstallmentBill" FromRole="InstallmentBill" ToRole="InstallmentBillDetail" />
         </EntityType>
         <EntityType Name="InstallmentBillDetail">
           <Key>
@@ -290,8 +310,8 @@
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <Property Name="Avatar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="Boolean" />
-          <NavigationProperty Name="CashBillDetails" Relationship="Self.FK_CashBillDetail_Product" FromRole="Product" ToRole="CashBillDetail" />
-          <NavigationProperty Name="InstallmentBillDetails" Relationship="Self.FK_InstallmentBillDetail_Product" FromRole="Product" ToRole="InstallmentBillDetail" />
+          <NavigationProperty Name="CashBillDetail" Relationship="Self.FK_CashBillDetail_Product" FromRole="Product" ToRole="CashBillDetail" />
+          <NavigationProperty Name="InstallmentBillDetail" Relationship="Self.FK_InstallmentBillDetail_Product" FromRole="Product" ToRole="InstallmentBillDetail" />
           <NavigationProperty Name="ProductType" Relationship="Self.FK_Product_ProductType" FromRole="Product" ToRole="ProductType" />
         </EntityType>
         <EntityType Name="ProductType">
@@ -301,7 +321,17 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductTypeCode" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ProductTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Products" Relationship="Self.FK_Product_ProductType" FromRole="ProductType" ToRole="Product" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Product_ProductType" FromRole="ProductType" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <Association Name="FK_CashBillDetail_CashBill">
           <End Role="CashBill" Type="Self.CashBill" Multiplicity="1" />
@@ -375,56 +405,58 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DIENMAYQUYETTIENEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="CashBills" EntityType="Self.CashBill" />
-          <EntitySet Name="CashBillDetails" EntityType="Self.CashBillDetail" />
-          <EntitySet Name="Customers" EntityType="Self.Customer" />
-          <EntitySet Name="InstallmentBills" EntityType="Self.InstallmentBill" />
-          <EntitySet Name="InstallmentBillDetails" EntityType="Self.InstallmentBillDetail" />
-          <EntitySet Name="Products" EntityType="Self.Product" />
-          <EntitySet Name="ProductTypes" EntityType="Self.ProductType" />
+        <EntityContainer Name="DmQT06Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Account" EntityType="Self.Account" />
+          <EntitySet Name="CashBill" EntityType="Self.CashBill" />
+          <EntitySet Name="CashBillDetail" EntityType="Self.CashBillDetail" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" />
+          <EntitySet Name="InstallmentBill" EntityType="Self.InstallmentBill" />
+          <EntitySet Name="InstallmentBillDetail" EntityType="Self.InstallmentBillDetail" />
+          <EntitySet Name="Product" EntityType="Self.Product" />
+          <EntitySet Name="ProductType" EntityType="Self.ProductType" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <AssociationSet Name="FK_CashBillDetail_CashBill" Association="Self.FK_CashBillDetail_CashBill">
-            <End Role="CashBill" EntitySet="CashBills" />
-            <End Role="CashBillDetail" EntitySet="CashBillDetails" />
+            <End Role="CashBill" EntitySet="CashBill" />
+            <End Role="CashBillDetail" EntitySet="CashBillDetail" />
           </AssociationSet>
           <AssociationSet Name="FK_CashBillDetail_Product" Association="Self.FK_CashBillDetail_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="CashBillDetail" EntitySet="CashBillDetails" />
+            <End Role="Product" EntitySet="Product" />
+            <End Role="CashBillDetail" EntitySet="CashBillDetail" />
           </AssociationSet>
           <AssociationSet Name="FK_InstallmentBill_Customer" Association="Self.FK_InstallmentBill_Customer">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="InstallmentBill" EntitySet="InstallmentBills" />
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="InstallmentBill" EntitySet="InstallmentBill" />
           </AssociationSet>
           <AssociationSet Name="FK_InstallmentBillDetail_InstallmentBill" Association="Self.FK_InstallmentBillDetail_InstallmentBill">
-            <End Role="InstallmentBill" EntitySet="InstallmentBills" />
-            <End Role="InstallmentBillDetail" EntitySet="InstallmentBillDetails" />
+            <End Role="InstallmentBill" EntitySet="InstallmentBill" />
+            <End Role="InstallmentBillDetail" EntitySet="InstallmentBillDetail" />
           </AssociationSet>
           <AssociationSet Name="FK_InstallmentBillDetail_Product" Association="Self.FK_InstallmentBillDetail_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="InstallmentBillDetail" EntitySet="InstallmentBillDetails" />
+            <End Role="Product" EntitySet="Product" />
+            <End Role="InstallmentBillDetail" EntitySet="InstallmentBillDetail" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_ProductType" Association="Self.FK_Product_ProductType">
-            <End Role="ProductType" EntitySet="ProductTypes" />
-            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductType" EntitySet="ProductType" />
+            <End Role="Product" EntitySet="Product" />
           </AssociationSet>
-          <EntitySet Name="Accounts" EntityType="DIENMAYQUYETTIENModel.Account" />
         </EntityContainer>
-        <EntityType Name="Account">
-          <Key>
-            <PropertyRef Name="Usename" />
-          </Key>
-          <Property Name="Usename" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Fullname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DIENMAYQUYETTIENModelStoreContainer" CdmEntityContainer="DIENMAYQUYETTIENEntities">
-          <EntitySetMapping Name="CashBills">
-            <EntityTypeMapping TypeName="DIENMAYQUYETTIENModel.CashBill">
+        <EntityContainerMapping StorageEntityContainer="DmQT06ModelStoreContainer" CdmEntityContainer="DmQT06Entities">
+          <EntitySetMapping Name="Account">
+            <EntityTypeMapping TypeName="DmQT06Model.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="Usename" ColumnName="Usename" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CashBill">
+            <EntityTypeMapping TypeName="DmQT06Model.CashBill">
               <MappingFragment StoreEntitySet="CashBill">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="BillCode" ColumnName="BillCode" />
@@ -438,8 +470,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CashBillDetails">
-            <EntityTypeMapping TypeName="DIENMAYQUYETTIENModel.CashBillDetail">
+          <EntitySetMapping Name="CashBillDetail">
+            <EntityTypeMapping TypeName="DmQT06Model.CashBillDetail">
               <MappingFragment StoreEntitySet="CashBillDetail">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="BillID" ColumnName="BillID" />
@@ -449,8 +481,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="DIENMAYQUYETTIENModel.Customer">
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="DmQT06Model.Customer">
               <MappingFragment StoreEntitySet="Customer">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
@@ -461,8 +493,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="InstallmentBills">
-            <EntityTypeMapping TypeName="DIENMAYQUYETTIENModel.InstallmentBill">
+          <EntitySetMapping Name="InstallmentBill">
+            <EntityTypeMapping TypeName="DmQT06Model.InstallmentBill">
               <MappingFragment StoreEntitySet="InstallmentBill">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="BillCode" ColumnName="BillCode" />
@@ -478,8 +510,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="InstallmentBillDetails">
-            <EntityTypeMapping TypeName="DIENMAYQUYETTIENModel.InstallmentBillDetail">
+          <EntitySetMapping Name="InstallmentBillDetail">
+            <EntityTypeMapping TypeName="DmQT06Model.InstallmentBillDetail">
               <MappingFragment StoreEntitySet="InstallmentBillDetail">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="BillID" ColumnName="BillID" />
@@ -489,8 +521,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="DIENMAYQUYETTIENModel.Product">
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="DmQT06Model.Product">
               <MappingFragment StoreEntitySet="Product">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
@@ -505,8 +537,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProductTypes">
-            <EntityTypeMapping TypeName="DIENMAYQUYETTIENModel.ProductType">
+          <EntitySetMapping Name="ProductType">
+            <EntityTypeMapping TypeName="DmQT06Model.ProductType">
               <MappingFragment StoreEntitySet="ProductType">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ProductTypeCode" ColumnName="ProductTypeCode" />
@@ -514,12 +546,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Accounts">
-            <EntityTypeMapping TypeName="DIENMAYQUYETTIENModel.Account">
-              <MappingFragment StoreEntitySet="Account">
-                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Usename" ColumnName="Usename" />
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DmQT06Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -537,7 +571,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

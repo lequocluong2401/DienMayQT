@@ -14,9 +14,10 @@ namespace DienMayQT.Models
     
     public partial class CashBill
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CashBill()
         {
-            this.CashBillDetails = new HashSet<CashBillDetail>();
+            this.CashBillDetail = new HashSet<CashBillDetail>();
         }
     
         public int ID { get; set; }
@@ -29,6 +30,7 @@ namespace DienMayQT.Models
         public string Note { get; set; }
         public int GrandTotal { get; set; }
     
-        public virtual ICollection<CashBillDetail> CashBillDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CashBillDetail> CashBillDetail { get; set; }
     }
 }

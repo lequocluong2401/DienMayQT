@@ -14,10 +14,11 @@ namespace DienMayQT.Models
     
     public partial class Product
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.CashBillDetails = new HashSet<CashBillDetail>();
-            this.InstallmentBillDetails = new HashSet<InstallmentBillDetail>();
+            this.CashBillDetail = new HashSet<CashBillDetail>();
+            this.InstallmentBillDetail = new HashSet<InstallmentBillDetail>();
         }
     
         public int ID { get; set; }
@@ -31,8 +32,10 @@ namespace DienMayQT.Models
         public string Avatar { get; set; }
         public Nullable<bool> Status { get; set; }
     
-        public virtual ICollection<CashBillDetail> CashBillDetails { get; set; }
-        public virtual ICollection<InstallmentBillDetail> InstallmentBillDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CashBillDetail> CashBillDetail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InstallmentBillDetail> InstallmentBillDetail { get; set; }
         public virtual ProductType ProductType { get; set; }
     }
 }

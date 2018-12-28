@@ -14,9 +14,10 @@ namespace DienMayQT.Models
     
     public partial class Customer
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Customer()
         {
-            this.InstallmentBills = new HashSet<InstallmentBill>();
+            this.InstallmentBill = new HashSet<InstallmentBill>();
         }
     
         public int ID { get; set; }
@@ -26,6 +27,7 @@ namespace DienMayQT.Models
         public string Address { get; set; }
         public Nullable<int> YearOfBirth { get; set; }
     
-        public virtual ICollection<InstallmentBill> InstallmentBills { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InstallmentBill> InstallmentBill { get; set; }
     }
 }

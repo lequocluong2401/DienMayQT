@@ -12,12 +12,12 @@ namespace DienMayQT.Areas.Admin.Controllers
 {
     public class CashBillsAdminController : Controller
     {
-        private DIENMAYQUYETTIENEntities db = new DIENMAYQUYETTIENEntities();
+        private DmQT06Entities db = new DmQT06Entities();
 
         // GET: Admin/CashBillsAdmin
         public ActionResult Index()
         {
-            return View(db.CashBills.ToList());
+            return View(db.CashBill.ToList());
         }
 
         // GET: Admin/CashBillsAdmin/Details/5
@@ -27,7 +27,7 @@ namespace DienMayQT.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CashBill cashBill = db.CashBills.Find(id);
+            CashBill cashBill = db.CashBill.Find(id);
             if (cashBill == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace DienMayQT.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.CashBills.Add(cashBill);
+                db.CashBill.Add(cashBill);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace DienMayQT.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CashBill cashBill = db.CashBills.Find(id);
+            CashBill cashBill = db.CashBill.Find(id);
             if (cashBill == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace DienMayQT.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CashBill cashBill = db.CashBills.Find(id);
+            CashBill cashBill = db.CashBill.Find(id);
             if (cashBill == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace DienMayQT.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CashBill cashBill = db.CashBills.Find(id);
-            db.CashBills.Remove(cashBill);
+            CashBill cashBill = db.CashBill.Find(id);
+            db.CashBill.Remove(cashBill);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

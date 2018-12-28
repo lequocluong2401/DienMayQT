@@ -9,18 +9,19 @@ using System.Web.Mvc;
 using System.Transactions;
 using DienMayQT.Models;
 using System.Web.Security;
+using System.Data.Entity.Validation;
 
 namespace DienMayQT.Areas.Admin.Controllers
 {
     public class ProductAdminController : Controller
     {
-        DIENMAYQUYETTIENEntities db = new DIENMAYQUYETTIENEntities();
+        DmQT06Entities db = new DmQT06Entities();
         //
         // GET: /Admin/ProductAdmin/
         public ActionResult Index()
         {
         
-            var product = db.Products.OrderByDescending(x => x.ID).ToList();
+            var product = db.Product.OrderByDescending(x => x.ID).ToList();
             if (Session["Username"] != null)
             {
                 return View(product);
@@ -30,61 +31,115 @@ namespace DienMayQT.Areas.Admin.Controllers
                 return RedirectToAction("Login");
             }
         }
-        [HttpGet]
+            // GET: /BangSanPham/Details/5
+            public FileResult Details(string id)
+        {
+            var path = Server.MapPath("~/App_Data/" + id);
+            return File(path, "images");
+        }
+       
         public ActionResult Create()
         {
-            ViewBag.ProductType = db.ProductTypes.OrderByDescending(x => x.ID).ToList();
+            //ViewBag.ProductTypeID = new SelectList(db.ProductTypes, "ID", "ProductTypeName");
+            ViewBag.ProductType = db.ProductType.OrderByDescending(x => x.ID).ToList();
+
             return View();
         }
 
-        // POST: /QuanliBSP/Create
+        // POST: /BangSanPham/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Product p)
+        public ActionResult Create(Product model)
         {
-            var pro = new Product();
-            pro.ProductCode = p.ProductCode;
-            pro.ProductName = p.ProductName;
-            pro.SalePrice = p.SalePrice;
-            pro.Quantity = p.Quantity;
-            pro.Status = p.Status;
-            pro.ProductTypeID = p.ProductTypeID;
-            db.Products.Add(pro);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            //model.Avatar = "~/Image/" + model.ID;
+            //CheckBangSanPham(model);
+            model.Status = true;
+            if (ModelState.IsValid)
+            {
+                using (var scope = new TransactionScope())
+                {
+                    
+                    db.Product.Add(model);
+                    db.SaveChanges();
 
+                    var path = Server.MapPath("~/App_Data");
+                    path = path + '/' + model.ID;
+                    if (Request.Files["HinhAnh"] != null && Request.Files["HinhAnh"].ContentLength > 0)
+                    {
+                        Request.Files["HinhAnh"].SaveAs(path);
+
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("HinhAnh", "Chưa có hình sản phẩm");
+                    }
+                scope.Complete(); // approve for transaction
+                return RedirectToAction("Index");
+                }
+            }
+            ViewBag.ProductType = db.ProductType.OrderByDescending(x => x.ID).ToList();
+            return View(model);
+        }
+        private void CheckBangSanPham(Product model)
+        {
+            if (model.OriginPrice < 0)
+                ModelState.AddModelError("OriginPrice", "Giá gốc phải lớn hơn 0!");
+            if (model.SalePrice < model.OriginPrice)
+                ModelState.AddModelError("SalePrice", "Giá bán phải lớn hơn giá gốc!");
+            if (model.InstallmentPrice < model.OriginPrice)
+                ModelState.AddModelError("InstallmentPrice", "Giá góp phải lớn hơn giá gốc!");
         }
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            Product model = db.Products.Find(id);
-            if (model == null)
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Product bangsanpham = db.Product.Find(id);
+            if (bangsanpham == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ProductType = db.ProductTypes.OrderByDescending(x => x.ID).ToList();
-            return View(model);
+            ViewBag.ProductType = db.ProductType.OrderByDescending(x => x.ID).ToList();
+            //ViewBag.Loai_id = new SelectList(db.ProductTypes, "id", "TenLoai", bangsanpham.ProductType);
+            return View(bangsanpham);
         }
 
-        // POST: /QuanliBSP/Create
+        // POST: /BangSanPham/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(Product p, int id)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Edit(Product model)
         {
-            var pro = db.Products.FirstOrDefault(x => x.ID == id);
-            pro.ProductCode = p.ProductCode;
-            pro.ProductName = p.ProductName;
-            pro.SalePrice = p.SalePrice;
-            pro.Quantity = p.Quantity;
-            pro.Status = p.Status;
-            pro.ProductTypeID = p.ProductTypeID;
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            //CheckBangSanPham(model);
+            if (ModelState.IsValid)
+            {
+                using (var scope = new TransactionScope())
+                {
+                    db.Entry(model).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
 
+                    var path = Server.MapPath("~/App_Data");
+                    path = path + '/' + model.ID;
+                    if (Request.Files["HinhAnh"] != null && Request.Files["HinhAnh"].ContentLength > 0)
+                    {
+                        Request.Files["HinhAnh"].SaveAs(path);
+
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("HinhAnh", "Chưa có hình sản phẩm");
+                    }
+
+                    scope.Complete(); // approve for transaction
+                    return RedirectToAction("Index");
+                }
+            }
+            return RedirectToAction("index");
         }
 
         public ActionResult Delete(int? id)
@@ -93,7 +148,7 @@ namespace DienMayQT.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product pro = db.Products.Find(id);
+            Product pro = db.Product.Find(id);
             if (pro == null)
             {
                 return HttpNotFound();
@@ -106,33 +161,21 @@ namespace DienMayQT.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Product pro = db.Products.Find(id);
-            db.Products.Remove(pro);
+            Product pro = db.Product.Find(id);
+            db.Product.Remove(pro);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Product pro = db.Products.Find(id);
-            if (pro == null)
-            {
-                return HttpNotFound();
-            }
-            return View(pro);
-        }
+        
 
         public ActionResult Login(Account acc)
         {
             if (ModelState.IsValid)
             {
-                using (DIENMAYQUYETTIENEntities db = new DIENMAYQUYETTIENEntities())
+                using (DmQT06Entities db = new DmQT06Entities())
                 {
-                    var obj = db.Accounts.Where(a => a.Usename.Equals(acc.Usename) && a.Password.Equals(acc.Password)).FirstOrDefault();
+                    var obj = db.Account.Where(a => a.Usename.Equals(acc.Usename) && a.Password.Equals(acc.Password)).FirstOrDefault();
 
                     if (obj != null)
                     {

@@ -12,12 +12,12 @@ namespace DienMayQT.Areas.Admin.Controllers
 {
     public class InstallmentBillsController : Controller
     {
-        private DIENMAYQUYETTIENEntities db = new DIENMAYQUYETTIENEntities();
+        private DmQT06Entities db = new DmQT06Entities();
 
         // GET: Admin/InstallmentBills
         public ActionResult Index()
         {
-            var installmentBills = db.InstallmentBills.Include(i => i.Customer);
+            var installmentBills = db.InstallmentBill.Include(i => i.Customer);
             return View(installmentBills.ToList());
         }
 
@@ -28,7 +28,7 @@ namespace DienMayQT.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            InstallmentBill installmentBill = db.InstallmentBills.Find(id);
+            InstallmentBill installmentBill = db.InstallmentBill.Find(id);
             if (installmentBill == null)
             {
                 return HttpNotFound();
@@ -39,7 +39,7 @@ namespace DienMayQT.Areas.Admin.Controllers
         // GET: Admin/InstallmentBills/Create
         public ActionResult Create()
         {
-            ViewBag.CustomerID = new SelectList(db.Customers, "ID", "CustomerCode");
+            ViewBag.CustomerID = new SelectList(db.Customer, "ID", "CustomerCode");
             return View();
         }
 
@@ -52,12 +52,12 @@ namespace DienMayQT.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.InstallmentBills.Add(installmentBill);
+                db.InstallmentBill.Add(installmentBill);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CustomerID = new SelectList(db.Customers, "ID", "CustomerCode", installmentBill.CustomerID);
+            ViewBag.CustomerID = new SelectList(db.Customer, "ID", "CustomerCode", installmentBill.CustomerID);
             return View(installmentBill);
         }
 
@@ -68,12 +68,12 @@ namespace DienMayQT.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            InstallmentBill installmentBill = db.InstallmentBills.Find(id);
+            InstallmentBill installmentBill = db.InstallmentBill.Find(id);
             if (installmentBill == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CustomerID = new SelectList(db.Customers, "ID", "CustomerCode", installmentBill.CustomerID);
+            ViewBag.CustomerID = new SelectList(db.Customer, "ID", "CustomerCode", installmentBill.CustomerID);
             return View(installmentBill);
         }
 
@@ -90,7 +90,7 @@ namespace DienMayQT.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CustomerID = new SelectList(db.Customers, "ID", "CustomerCode", installmentBill.CustomerID);
+            ViewBag.CustomerID = new SelectList(db.Customer, "ID", "CustomerCode", installmentBill.CustomerID);
             return View(installmentBill);
         }
 
@@ -101,7 +101,7 @@ namespace DienMayQT.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            InstallmentBill installmentBill = db.InstallmentBills.Find(id);
+            InstallmentBill installmentBill = db.InstallmentBill.Find(id);
             if (installmentBill == null)
             {
                 return HttpNotFound();
@@ -114,8 +114,8 @@ namespace DienMayQT.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            InstallmentBill installmentBill = db.InstallmentBills.Find(id);
-            db.InstallmentBills.Remove(installmentBill);
+            InstallmentBill installmentBill = db.InstallmentBill.Find(id);
+            db.InstallmentBill.Remove(installmentBill);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

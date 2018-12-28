@@ -3,12 +3,13 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+
 }
 
 <h2>Details</h2>
 
 <div>
-    <h4>Product</h4>
+    <h4>BangSanPham</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -60,27 +61,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Avatar)
+            @Html.DisplayNameFor(model => model.ProductType.ProductTypeName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Avatar)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductType.ProductTypeCode)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProductType.ProductTypeCode)
+            @Html.DisplayFor(model => model.ProductType.ProductTypeName)
         </dd>
 
     </dl>
