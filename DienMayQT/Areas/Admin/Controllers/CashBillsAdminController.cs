@@ -14,6 +14,26 @@ namespace DienMayQT.Areas.Admin.Controllers
     {
         private DIENMAYQUYETTIENEntities db = new DIENMAYQUYETTIENEntities();
 
+        private void Check(CashBill model)
+        {
+            //if (model.BillCode)
+            //    ModelState.AddModelError("GiaGoc", "");
+            if (model.CustomerName.Length > 30)
+                ModelState.AddModelError("CustomerName", "Tên khách hàng phải ít hơn 30 kí tự!");
+            if (model.PhoneNumber.Length < 10)
+                ModelState.AddModelError("PhoneNumber", "Số điện thoại phải nhiều hơn 10 kí tự!");
+            if (model.Address.Length < 10)
+                ModelState.AddModelError("Address", "Địa chỉ phải nhiều hơn 10 kí tự!");
+            //if (model.Date)
+            //    ModelState.AddModelError("SoLuongTon", "Số lượng tồn phải lớn hơn 0!");
+            if (model.Shipper.Length > 30)
+                ModelState.AddModelError("Shipper", "Tên Shipper phải ít hơn 30 kí tự!");
+            if (model.Note.Length > 100)
+                ModelState.AddModelError("Note", "Ghi chú phải ít hơn 100 kí tự!");
+            if (model.GrandTotal < 0)
+                ModelState.AddModelError("GrandTotal", "Tổng giá tiền phải lớn hơn 0!");
+        }
+
         // GET: Admin/CashBillsAdmin
         public ActionResult Index()
         {
@@ -48,6 +68,7 @@ namespace DienMayQT.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,BillCode,CustomerName,PhoneNumber,Address,Date,Shipper,Note,GrandTotal")] CashBill cashBill)
         {
+            Check(cashBill);
             if (ModelState.IsValid)
             {
                 db.CashBills.Add(cashBill);
@@ -80,6 +101,7 @@ namespace DienMayQT.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,BillCode,CustomerName,PhoneNumber,Address,Date,Shipper,Note,GrandTotal")] CashBill cashBill)
         {
+            Check(cashBill);
             if (ModelState.IsValid)
             {
                 db.Entry(cashBill).State = EntityState.Modified;

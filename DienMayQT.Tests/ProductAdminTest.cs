@@ -5,6 +5,7 @@ using DienMayQT.Areas.Admin.Controllers;
 using DienMayQT.Models;
 using System.Collections.Generic;
 using System.Web;
+using System.Transactions;
 
 namespace DienMayQT.Tests
 {
@@ -58,7 +59,7 @@ namespace DienMayQT.Tests
             var file = new Mock<HttpPostedFileBase>();
             context.Setup(c => c.Request).Returns(request.Object);
             request.Setup(r => r.Files).Returns(files.Object);
-            files.Setup(f => f["HinhAnh"]).Returns(file.Object);
+            files.Setup(f => f["Avatar"]).Returns(file.Object);
             file.Setup(f => f.ContentLength).Returns(1);
             context.Setup(c => c.Server.MapPath("~/App_Data")).Returns("~/App_Data");
             controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
@@ -83,7 +84,7 @@ namespace DienMayQT.Tests
                 file.Setup(f => f.ContentLength).Returns(0);
                 var result1 = controller.Create(model) as ViewResult;
                 Assert.IsNotNull(result1);
-                Assert.IsInstanceOfType(result1.ViewData["Loai_id"], typeof(SelectList));
+                Assert.IsInstanceOfType(result1.ViewData["ProductTypeID"], typeof(SelectList));
             }
         }
     }
