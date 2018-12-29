@@ -21,9 +21,10 @@ namespace DienMayQT.Models
         }
     
         public int ID { get; set; }
-        [StringLength(3, MinimumLength = 3, ErrorMessage = "Mã  loại sản phẩm không được ít hơn 3 ký tự")]
-        [Required(ErrorMessage = "Vui lòng nhập số lượng")]
+        [StringLength(3, MinimumLength = 3, ErrorMessage = "Mã  loại sản phẩm  gồm 3 ký tự")]
+        [Required(ErrorMessage = "Vui lòng nhập mã sản  phẩm")]
         public string ProductTypeCode { get; set; }
+        [Required(ErrorMessage = "Vui lòng nhập tên sản  phẩm")]
         public string ProductTypeName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -41,7 +41,7 @@
         <div class="input-group mb-3">
             @Html.LabelFor(model => model.ProductTypeID, "ProductTypeID", new { @class = "control-label col-md-2" }) :
             <div class="col-md-10">
-                @Html.DropDownList("ProductTypeID", new SelectList(ViewBag.ProductType, "ID", "ProductTypeName"))
+                @Html.DropDownList("ProductTypeID", null, "ID", "ProductTypeName"))
                 @Html.ValidationMessageFor(model => model.ProductTypeID)
             </div>
         </div>

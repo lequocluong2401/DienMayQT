@@ -37,10 +37,11 @@ namespace DienMayQT.Areas.Admin.Controllers
             var path = Server.MapPath("~/App_Data/" + id);
             return File(path, "images");
         }
-       
+
         public ActionResult Create()
         {
             ViewBag.ProductTypeID = new SelectList(db.ProductType.OrderByDescending(x => x.ID).ToList(), "ID", "ProductTypeName");
+
             if (Session["Username"] != null)
             {
                 return View();
@@ -56,17 +57,28 @@ namespace DienMayQT.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,UserName,PassWord,FullName")] Account model)
+        public ActionResult Create(Product model)
         {
+            CheckBangSanPham(model);
             if (ModelState.IsValid)
             {
-                db.Account.Add(model);
+                var path = Server.MapPath("~/App_Data");
+                path = path + '/' + model.ID;
+                if (Request.Files["HinhAnh"] != null && Request.Files["HinhAnh"].ContentLength > 0)
+                {
+                    Request.Files["HinhAnh"].SaveAs(path);
+
+                }
+                else
+                {
+                    ModelState.AddModelError("HinhAnh", "Chưa có hình sản phẩm");
+                }
+                db.Product.Add(model);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.ProductTypeID = new SelectList(db.ProductType, "ID", "ProductTypeName", model.ProductTypeID);
             return View(model);
-
         }
         private void CheckBangSanPham(Product model)
         {
@@ -79,28 +91,24 @@ namespace DienMayQT.Areas.Admin.Controllers
             if (model.Quantity < 0)
                 ModelState.AddModelError("Quantity", "Số lượng phải lớn hơn 0");
         }
-        [HttpGet]
+
         public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Product bangsanpham = db.Product.Find(id);
-            if (bangsanpham == null)
+
+            Product model = db.Product.Find(id);
+            if (model == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ProductType = db.ProductType.OrderByDescending(x => x.ID).ToList();
-            //ViewBag.Loai_id = new SelectList(db.ProductTypes, "id", "TenLoai", bangsanpham.ProductType);
-            return View(bangsanpham);
+            ViewBag.ProductTypeID = new SelectList(db.ProductType, "ID", "ProductTypeName", model.ProductTypeID);
+            return View(model);
         }
 
         // POST: /BangSanPham/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(Product model)
         {
             CheckBangSanPham(model);
@@ -108,7 +116,8 @@ namespace DienMayQT.Areas.Admin.Controllers
             {
                 using (var scope = new TransactionScope())
                 {
-                    db.Entry(model).State = System.Data.Entity.EntityState.Modified;
+                    Product pro = db.Product.Where(p => p.ID == model.ID).FirstOrDefault();
+                    db.Entry(pro).CurrentValues.SetValues(model);
                     db.SaveChanges();
 
                     var path = Server.MapPath("~/App_Data");
@@ -127,8 +136,10 @@ namespace DienMayQT.Areas.Admin.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            return RedirectToAction("index");
+            ViewBag.ProductTypeID = new SelectList(db.ProductType, "ID", "ProductTypeName", model.ProductTypeID);
+            return View(model);
         }
+
 
         public ActionResult Delete(int? id)
         {
