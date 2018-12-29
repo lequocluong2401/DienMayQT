@@ -14,6 +14,30 @@ namespace DienMayQT.Areas.Admin.Controllers
     {
         private DmQT06Entities1 db = new DmQT06Entities1();
 
+        private void Check(InstallmentBill model)
+        {
+            if (model.BillCode.Length < 1)
+                ModelState.AddModelError("BillCode", "Mã hóa đơn phải dài hơn 1 kí từ");
+            if (model.CustomerID > 30)
+                ModelState.AddModelError("CustomerID", "Mã khách hàng phải ít hơn 30 kí tự!");
+            //if (model.Date)
+            //    ModelState.AddModelError("SoLuongTon", "Số lượng tồn phải lớn hơn 0!");
+            if (model.Shipper.Length > 30)
+                ModelState.AddModelError("Shipper", "Tên Shipper phải ít hơn 30 kí tự!");
+            if (model.Note.Length > 100)
+                ModelState.AddModelError("Note", "Ghi chú phải ít hơn 100 kí tự!");
+            if (model.Method.Length < 5)
+                ModelState.AddModelError("Method", "Hình thức thanh toán phải nhiều hơn 10 kí tự!");
+            //if (model.Period < 1)
+            //    ModelState.AddModelError("Period", "Chu kì phải nhiều hơn 1!");
+            if (model.GrandTotal < 0)
+                ModelState.AddModelError("GrandTotal", "Tổng giá tiền phải lớn hơn 0!");
+            //if (model.Taken < 0)
+            //    ModelState.AddModelError("Taken", "Tổng giá tiền phải lớn hơn 0!");
+            //if (model.Remain < 0)
+            //    ModelState.AddModelError("Remain", "Tổng giá tiền phải lớn hơn 0!");
+        }
+
         // GET: Admin/InstallmentBills
         public ActionResult Index()
         {
@@ -50,6 +74,7 @@ namespace DienMayQT.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,BillCode,CustomerID,Date,Shipper,Note,Method,Period,GrandTotal,Taken,Remain")] InstallmentBill installmentBill)
         {
+            Check(installmentBill);
             if (ModelState.IsValid)
             {
                 db.InstallmentBill.Add(installmentBill);
@@ -84,6 +109,7 @@ namespace DienMayQT.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,BillCode,CustomerID,Date,Shipper,Note,Method,Period,GrandTotal,Taken,Remain")] InstallmentBill installmentBill)
         {
+            Check(installmentBill);
             if (ModelState.IsValid)
             {
                 db.Entry(installmentBill).State = EntityState.Modified;
