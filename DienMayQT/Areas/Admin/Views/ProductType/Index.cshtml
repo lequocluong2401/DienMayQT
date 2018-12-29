@@ -1,0 +1,60 @@
+﻿@model IEnumerable<DienMayQT.Models.ProductType>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> Danh sách Loai San pham 
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="BangSanPham" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ProductTypeCode</th>
+                        <th>ProductTypeName</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductTypeCode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductTypeName)
+                            </td>
+
+                            <td>
+
+                                <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Edit", new { id = item.ID })'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", new { id = item.ID })'"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
+
+@section scripts {
+    <link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#BangSanPham').DataTable();
+        });
+    </script>
+}

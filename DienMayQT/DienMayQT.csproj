@@ -168,6 +168,7 @@
     <Compile Include="Areas\Admin\Controllers\CashBillsAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\InstallmentBillsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductTypeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -325,6 +326,10 @@
     <Content Include="Areas\Admin\Views\Account\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Account\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Account\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductType\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductType\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductType\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductType\Delete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dataTables.bootstrap4.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
