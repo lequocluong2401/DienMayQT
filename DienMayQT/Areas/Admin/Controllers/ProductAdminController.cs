@@ -56,33 +56,15 @@ namespace DienMayQT.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Product model)
+        public ActionResult Create([Bind(Include = "ID,UserName,PassWord,FullName")] Account model)
         {
-            CheckBangSanPham(model);
             if (ModelState.IsValid)
             {
-                using (var scope = new TransactionScope())
-                {
-
-                    db.Product.Add(model);
-                    db.SaveChanges();
-
-                    var path = Server.MapPath("~/App_Data");
-                    path = path + '/' + model.ID;
-                    if (Request.Files["HinhAnh"] != null && Request.Files["HinhAnh"].ContentLength > 0)
-                    {
-                        Request.Files["HinhAnh"].SaveAs(path);
-
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("HinhAnh", "Chưa có hình sản phẩm");
-                    }
-                    scope.Complete(); // approve for transaction
-                    return RedirectToAction("Index");
-                }
+                db.Account.Add(model);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            ViewBag.ProductType = db.ProductType.OrderByDescending(x => x.ID).ToList();
+
             return View(model);
 
         }
