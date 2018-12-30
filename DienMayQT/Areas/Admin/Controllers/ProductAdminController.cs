@@ -62,19 +62,19 @@ namespace DienMayQT.Areas.Admin.Controllers
             CheckBangSanPham(model);
             if (ModelState.IsValid)
             {
+                db.Product.Add(model);
+                db.SaveChanges();
                 var path = Server.MapPath("~/App_Data");
                 path = path + '/' + model.ID;
                 if (Request.Files["HinhAnh"] != null && Request.Files["HinhAnh"].ContentLength > 0)
                 {
                     Request.Files["HinhAnh"].SaveAs(path);
-
                 }
                 else
                 {
                     ModelState.AddModelError("HinhAnh", "Chưa có hình sản phẩm");
                 }
-                db.Product.Add(model);
-                db.SaveChanges();
+               
                 return RedirectToAction("Index");
             }
             ViewBag.ProductTypeID = new SelectList(db.ProductType, "ID", "ProductTypeName", model.ProductTypeID);
