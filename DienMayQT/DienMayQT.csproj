@@ -169,6 +169,8 @@
     <Compile Include="Areas\Admin\Controllers\InstallmentBillsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductTypeController.cs" />
+    <Compile Include="Areas\Customer\Controllers\ProductsCustomerController.cs" />
+    <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -194,6 +196,7 @@
     <Compile Include="Models\InstallmentBillDetail.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\KhuModels.cs" />
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -232,6 +235,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap1.css" />
     <Content Include="Content\css\main.css" />
+    <Content Include="Content\css\portfolio-item.css" />
     <Content Include="Content\css\util.css" />
     <Content Include="Content\dataTables.bootstrap4.css" />
     <Content Include="Content\font-awesome.min.css" />
@@ -330,6 +334,9 @@
     <Content Include="Areas\Admin\Views\ProductType\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ProductType\Create.cshtml" />
     <Content Include="Areas\Admin\Views\ProductType\Delete.cshtml" />
+    <Content Include="Areas\Customer\Views\web.config" />
+    <Content Include="Areas\Customer\Views\Shared\_CustomerLayout.cshtml" />
+    <Content Include="Areas\Customer\Views\ProductsCustomer\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dataTables.bootstrap4.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -378,6 +385,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Customer\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
