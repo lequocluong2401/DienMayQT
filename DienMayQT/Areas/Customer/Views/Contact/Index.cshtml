@@ -1,0 +1,46 @@
+﻿@model DienMayQT.Models.KhuModels
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Customer/Views/Shared/_CustomerLayout.cshtml";
+}
+<!------ Include the above in your HEAD tag ---------->
+<link rel="stylesheet" href="~/Content/css/contact.css">
+<!-- Custom styles for this template -->
+<link href="~/Content/css/portfolio-item.css" rel="stylesheet">
+
+<section id="contact" class="content-section text-center">
+    <div class="contact-section">
+        <div class="container" style="padding-top: 30px;">
+            <h2>Liên Hệ</h2>
+            <p>Feel free to shout us by feeling the contact form or visiting our social network sites like Fackebook,Whatsapp,Twitter.</p>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2" style="margin: auto;">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="exampleInputName2">Tên</label>
+                            <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail2">Email</label>
+                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+                        </div>
+                        <div class="form-group ">
+                            <label for="exampleInputText">Nội Dung</label>
+                            <textarea class="form-control" placeholder="Description"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-default">Gửi</button>
+                    </form>
+
+                    <hr>
+                    <h3>Our Social Sites</h3>
+                    <ul class="list-inline banner-social-buttons">
+                        <li><a href="#" class="btn btn-default btn-lg"><i class="fa fa-twitter"> <span class="network-name">Twitter</span></i></a></li>
+                        <li><a href="#" class="btn btn-default btn-lg"><i class="fa fa-facebook"> <span class="network-name">Facebook</span></i></a></li>
+                        <li><a href="#" class="btn btn-default btn-lg"><i class="fa fa-youtube-play"> <span class="network-name">Youtube</span></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
