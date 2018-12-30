@@ -9,6 +9,7 @@ namespace DienMayQT.Models
     {
         public IEnumerable<Product> Product { get; set; }
         public IEnumerable<ProductType> ProductType { get; set; }
-        
+        public ProductType Category { get; set; }
+        public Product Product1 { get; set; }
     }
 }

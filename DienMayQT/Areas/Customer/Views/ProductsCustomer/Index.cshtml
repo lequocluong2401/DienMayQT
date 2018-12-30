@@ -38,9 +38,10 @@
         <a href="#">     
             <img  class="img-fluid" src="@Url.Action("GetImgSrc", new { id = item.ID })"/>
             @Html.DisplayFor(modelItem => item.ProductName)
+            @Html.ActionLink("Details", "Details", new { id = item.ID })
         </a>
         <br>
-        @Html.FormatValue(item.SalePrice, "{0:0,0} vnđ")
+        @Html.FormatValue(item.SalePrice, "{0:0,0} VNĐ")
     </div>
 }
 

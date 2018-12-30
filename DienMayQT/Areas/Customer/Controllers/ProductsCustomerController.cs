@@ -30,6 +30,25 @@ namespace DienMayQT.Areas.Customer.Controllers
             return File(path, "images");
         }
 
+        public ActionResult Category(int id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ProductType type = db.ProductType.Find(id);
+            if (type == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = new KhuModels();
+            model.Product = db.Product.ToList();
+            model.ProductType = db.ProductType.ToList();
+            model.Category = type;
+            return View(model);
+        }
+
         // GET: Customer/ProductsCustomer/Details/5
         public ActionResult Details(int? id)
         {
@@ -42,7 +61,11 @@ namespace DienMayQT.Areas.Customer.Controllers
             {
                 return HttpNotFound();
             }
-            return View(product);
+            var model = new KhuModels();
+            model.Product = db.Product.ToList();
+            model.ProductType = db.ProductType.ToList();
+            model.Product1 = product;
+            return View(model);
         }
     }
 }

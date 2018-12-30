@@ -20,5 +20,7 @@ namespace DienMayQT.Areas.Customer
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }
+
+
     }
 }
