@@ -17,9 +17,6 @@ namespace DienMayQT.Areas.Admin.Controllers
 
         private void Check(InstallmentBill model)
         {
-
-            if (model.CustomerID > 30)
-
             if (model.CustomerID > 20)
                 ModelState.AddModelError("CustomerID", "Mã khách hàng phải ít hơn 20 kí tự!");
             if (model.Customer.CustomerName.Length > 50)
