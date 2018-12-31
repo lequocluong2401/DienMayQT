@@ -5,15 +5,13 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Delete</h2>
+<h2>Xóa sản phẩm</h2>
 
-<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Product</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.ProductCode)
+            Mã sản phẩm
         </dt>
 
         <dd>
@@ -21,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ProductName)
+            Tên sản phẩm
         </dt>
 
         <dd>
@@ -29,31 +27,31 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SalePrice)
+            Giá bán
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.SalePrice)
+            @String.Format("{0:0,0} VNĐ", Model.SalePrice)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.OriginPrice)
+            Giá gốc
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.OriginPrice)
+           @String.Format("{0:0,0} VNĐ", Model.OriginPrice)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.InstallmentPrice)
+           Giá trả góp
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.InstallmentPrice)
+            @String.Format("{0:0,0} VNĐ", Model.InstallmentPrice)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Quantity)
+           Số lượng
         </dt>
 
         <dd>
@@ -61,7 +59,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Avatar)
+            Hình đại diện
         </dt>
 
         <dd>
@@ -69,7 +67,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Status)
+            Trạng thái
         </dt>
 
         <dd>
@@ -77,7 +75,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ProductType.ProductTypeCode)
+            Mã loại sản phẩm
         </dt>
 
         <dd>
@@ -90,8 +88,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Trở về", "Index")
         </div>
     }
 </div>

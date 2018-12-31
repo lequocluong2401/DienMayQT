@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using DienMayQT.Models;
 using EntityState = System.Data.Entity.EntityState;
+using DienMayQT.Areas.Admin.Models;
 
 namespace DienMayQT.Areas.Admin.Controllers
 {
@@ -174,6 +175,29 @@ namespace DienMayQT.Areas.Admin.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Print(int id)
+        {
+            var order = db.CashBill.FirstOrDefault(o => o.ID == id);
+            if (order != null)
+            {
+                PrintModel rp = new PrintModel();
+                rp.Address = order.Address;
+                rp.BillCode = order.BillCode;
+                rp.CustomerName = order.CustomerName;
+                rp.Date = order.Date;
+                rp.GrandTotal = order.GrandTotal;
+                rp.Note = order.Note;
+                rp.PhoneNumber = order.PhoneNumber;
+                rp.Shipper = order.Shipper;
+                rp.CashBillDetail = order.CashBillDetail.ToList();
+                return View(rp);
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }

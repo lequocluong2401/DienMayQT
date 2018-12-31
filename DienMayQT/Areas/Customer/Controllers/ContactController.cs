@@ -23,7 +23,10 @@ namespace DienMayQT.Areas.Customer.Controllers
             return View(model);
         }
 
-        
+        public ActionResult Category(int id)
+        {
+            return RedirectToAction("Category", "ProductsCustomer", new { area = "Customer", id = id });
+        }
 
         // GET: Customer/Contact/Create
         public ActionResult Create()

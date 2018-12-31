@@ -5,7 +5,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Chỉnh sửa SP</h2>
+<h2>Cập nhật Sản phẩm</h2>
 
 
 @using (Html.BeginForm("Edit", "ProductAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -17,7 +17,7 @@
     @Html.HiddenFor(model => model.ID)
 
     <div class="form-group">
-        @Html.LabelFor(model => model.ProductCode, "Mã SP", new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.ProductCode, "Mã sản phẩm", new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.TextBoxFor(model => model.ProductCode, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.ProductCode)
@@ -34,7 +34,7 @@
 
     <div class="form-group">
         <div class="input-group mb-3">
-            @Html.LabelFor(model => model.ProductTypeID, "ProductTypeID", new { @class = "control-label col-md-2" }) :
+            @Html.LabelFor(model => model.ProductTypeID, "Loại sản phẩm", new { @class = "control-label col-md-2" }) :
             <div class="col-md-10">
                 @Html.DropDownList("ProductTypeID", null, "ID", "ProductTypeName")
                 @Html.ValidationMessageFor(model => model.ProductTypeID)
@@ -83,7 +83,8 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+        
+        @Html.LabelFor(model => model.Status, "Trạng thái", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Status)
             @Html.ValidationMessageFor(model => model.Status)
@@ -92,14 +93,14 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
+            <input type="submit" value="Lưu" class="btn btn-success" />
         </div>
     </div>
 </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Trở về", "Index")
 </div>
 
 @section Scripts {

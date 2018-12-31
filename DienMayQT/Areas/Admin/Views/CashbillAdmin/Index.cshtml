@@ -16,40 +16,27 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Action</th>
-                        <th>Bill Code</th>
-                        <th>CustomerName</th>
-                        <th>Phone Number</th>
-                        <th>Address</th>
-                        <th>Date</th>
-                        <th>Shipper</th>
-                        <th>Note</th> 
-                        <th>Grand Total</th> 
+                        <th></th>
+                        <th>Mã hóa đơn</th>
+                        <th>Tên khách hàng</th>
+                        <th>Số điện thoại</th>
+                        <th>Địa chỉ</th>
+                        <th>Ngày tạo</th>
+                        <th>Người giao hàng</th>
+                        <th>Ghi chú</th> 
+                        <th>Tổng thanh toán</th> 
                         
                     </tr>
                 </thead>
-                <tfoot>
-                    <tr>
-                        <th>Action</th>
-                        <th>Bill Code</th>
-                        <th>CustomerName</th>
-                        <th>Phone Number</th>
-                        <th>Address</th>
-                        <th>Date</th>
-                        <th>Shipper</th>
-                        <th>Note</th>
-                        <th>Grand Total</th>
-                        
-                    </tr>
-                </tfoot>
+               
                 <tbody>
                     @foreach (var item in Model)
                     {
                         <tr>
                             <td>
-
-                                <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Edit", new { id = item.ID })'"><i class="fa fa-pencil" aria-hidden="true"></i></button><br />
-                                <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", new { id = item.ID })'"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Print", new { id = item.ID })'"><i class="fa fa-print" aria-hidden="true"></i></button><br />
+                                <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Edit", new { id = item.ID })'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                
 
                             </td>
                             <td>

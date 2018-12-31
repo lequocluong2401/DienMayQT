@@ -6,7 +6,7 @@
 }
 
 
-    <h2>Create</h2>
+    <h2>Thêm hóa đơn</h2>
 
     @using (Html.BeginForm())
     {
@@ -18,7 +18,7 @@
 
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.CustomerName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.CustomerName,"Tên khách hàng" ,htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(model => model.CustomerName, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.CustomerName)
@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.PhoneNumber, "Số điện thoại", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.PhoneNumber)
@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.Address, "Địa chỉ", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.Address)
@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Shipper, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.Shipper, "Người giao hảng", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(model => model.Shipper, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.Shipper)
@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.Note, "Ghi chú", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(model => model.Note, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.Note)
@@ -59,7 +59,7 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create Information" class="btn btn-success" />
+                        <input type="submit" value="Tạo" class="btn btn-success" />
                     </div>
                 </div>
             </div>

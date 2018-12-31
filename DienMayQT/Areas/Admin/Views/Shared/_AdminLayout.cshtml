@@ -25,32 +25,32 @@
             <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sản Phẩm">
                     <a class="nav-link" href="/Admin/ProductAdmin">
-                        <i class="fa fa-fw fa-dashboard"></i>
+                        <i class="fa fa-fw fa-shopping-cart"></i>
                         <span class="nav-link-text">Sản Phẩm</span>
                     </a>
                 </li>
 
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Danh Mục">
                     <a class="nav-link" href="/Admin/ProductType">
-                        <i class="fa fa-fw fa-area-chart"></i>
+                        <i class="fa fa-fw fa-list-ol"></i>
                         <span class="nav-link-text">Danh Mục</span>
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Hóa Đơn">
                     <a class="nav-link" href="/Admin/CashbillAdmin">
-                        <i class="fa fa-fw fa-area-chart"></i>
+                        <i class="fa fa-fw fa-file"></i>
                         <span class="nav-link-text">Hóa Đơn</span>
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Trả Góp">
                     <a class="nav-link" href="/Admin/InstallmentBills">
-                        <i class="fa fa-fw fa-table"></i>
+                        <i class="fa fa-fw fa-file-text"></i>
                         <span class="nav-link-text">Trả Góp</span>
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tài Khoản">
                     <a class="nav-link" href="/Admin/Account">
-                        <i class="fa fa-fw fa-link"></i>
+                        <i class="fa fa-fw fa-users"></i>
                         <span class="nav-link-text">Tài Khoản</span>
                     </a>
                 </li>
@@ -63,36 +63,22 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <form class="form-inline my-2 my-lg-0 mr-lg-2">
-                        <div class="input-group">
-                            <input class="form-control" type="text" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </form>
-                </li>
+                
                 <li class="nav-item">
                     <a class="nav-link">
-                        <i class="fa fa-fw fa-address-card"></i>
+                        <i class="fa fa-fw fa-user"></i>
                         @if (Session["FullName"] != null)
                         {
                             @Session["FullName"].ToString();
                         }
-                        else
-                        {
-
-                        }
+                       
                     </a>
                 </li>
                 <li class="nav-item">
                     
                     <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
                         <i class="fa fa-fw fa-sign-out"></i>
-                        Logout
+                        Đăng xuất
 
 
                     </a>

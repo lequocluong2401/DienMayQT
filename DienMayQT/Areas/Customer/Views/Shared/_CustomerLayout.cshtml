@@ -19,7 +19,7 @@
         .dropdown:hover .dropdown-menu.dropdown-menu-right {
             display: initial;
         }
-    </style>>
+    </style>
 </head>
 
 <body>
@@ -50,10 +50,13 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Liên hệ</a>
+                        <a class="nav-link" href="/Customer/Contact">Liên hệ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Về chúng tôi</a>
+                        <a class="nav-link" href="/Customer/AboutUs">Về chúng tôi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Admin/ProductAdmin/Login">Đăng Nhập</a>
                     </li>
                 </ul>
             </div>
@@ -65,13 +68,7 @@
         @RenderBody()
     </div>
 
-    <!-- Footer -->
-    <footer class="py-5 bg-dark">
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
-        </div>
-        <!-- /.container -->
-    </footer>
+    
 
     @RenderSection("scripts", required: false)
 </body>

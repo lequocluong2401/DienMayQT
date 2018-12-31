@@ -16,10 +16,7 @@
         <!-- Title -->
         <h1 class="mt-4">Sản phẩm: @Html.DisplayFor(item => Model.Product1.ProductName)</h1>
 
-        <hr>
 
-        <!-- Date/Time -->
-        <p>Posted on January 1, 2018 at 12:00 PM</p>
 
         <hr>
 
@@ -30,11 +27,11 @@
 
         <!-- Post Content -->
         <p class="lead">Mã sản phẩm: @Html.DisplayFor(item => Model.Product1.ProductCode)</p>
-        <p class="lead">Danh mục sản phẩm: @Html.DisplayFor(item => Model.Product1.ProductType.ProductTypeName)</p>
+        <p class="lead">Loại sản phẩm: @Html.DisplayFor(item => Model.Product1.ProductType.ProductTypeName)</p>
         <hr />
         <blockquote class="blockquote">
-            <p class="mb-0">Giá bán: @Html.DisplayFor(item => Model.Product1.SalePrice)</p>
-            <p class="mb-0">Giá trả góp: @Html.DisplayFor(item => Model.Product1.InstallmentPrice)</p>           
+            <p class="mb-0">Giá bán: @Html.FormatValue(Model.Product1.SalePrice, "{0:0,0} VNĐ")</p>
+            <p class="mb-0">Giá trả góp: @Html.FormatValue(Model.Product1.InstallmentPrice, "{0:0,0} VNĐ")</p>           
         </blockquote>
         <hr />
         <p>Số lượng hiện có: @Html.DisplayFor(item => Model.Product1.Quantity)</p>
@@ -77,81 +74,3 @@
 
 </div>
 <!-- /.row -->
-@*<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductCode)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProductCode)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProductName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SalePrice)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SalePrice)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.OriginPrice)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OriginPrice)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.InstallmentPrice)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.InstallmentPrice)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Avatar)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Avatar)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductType.ProductTypeCode)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProductType.ProductTypeCode)
-        </dd>
-
-    </dl>
-</div>*@

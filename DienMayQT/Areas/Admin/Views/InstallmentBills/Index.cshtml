@@ -18,36 +18,36 @@
             <thead>
                 <tr>
 
-                    <th>Action</th>
+                    <th></th>
                     <th>
-                        @Html.DisplayNameFor(model => model.BillCode)
+                       Mã hóa đơn
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Date)
+                        Ngày lập
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Shipper)
+                        Người giao hàng
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Note)
+                       Ghi chú
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Method)
+                        Hình thức Thanh toán
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Period)
+                       Thời lượng
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.GrandTotal)
+                       Tổng thanh toán
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Taken)
+                       Số tiến đã nhận
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Remain)
+                        Số tiền còn lại
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Customer.CustomerCode)
+                        Mã khách hàng
                     </th>
                 </tr>
             </thead>
@@ -57,8 +57,7 @@
                     <tr>
                         <td>
                             <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Edit", new { id = item.ID })'"><i class="fa fa-pencil" aria-hidden="true"></i></button><br />
-                            <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", new { id = item.ID })'"><i class="fa fa-trash" aria-hidden="true"></i></button><br />
-                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Details", new { id = item.ID })'"><i class="fa fa-print" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Print", new { id = item.ID })'"><i class="fa fa-print" aria-hidden="true"></i></button>
 
                         </td>
                         <td>
