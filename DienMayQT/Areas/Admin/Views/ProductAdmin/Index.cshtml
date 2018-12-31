@@ -9,18 +9,20 @@
 
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Create")'"><i class="fa fa-plus" aria-hidden="true"></i> Thêm mới</button>
+    
 </p>
 <div class="card mb-3">
     <div class="card-header">
-        <i class="fa fa-table"></i> Danh sách sản phẩm 
+        <i class="fa fa-table"></i> Danh sách Sản phẩm 
     </div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered table-hover table-striped " id="BangSanPham" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>ID</th>
+
+                        <th>Action</th>
                         <th>Product Code</th>
                         <th>Product Name</th>
                         <th>Sale Price</th>
@@ -30,12 +32,12 @@
                         <th>Avatar</th>
                         <th>Status</th>
                         <th>ProductID</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>ID</th>
+
+                        <th>Action</th>
                         <th>Product Code</th>
                         <th>Product Name</th>
                         <th>Sale Price</th>
@@ -45,7 +47,6 @@
                         <th>Avatar</th>
                         <th>Status</th>
                         <th>ProductID</th>
-                        <th>Action</th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -53,7 +54,10 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.ID)
+                                
+                                <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Edit", new { id = item.ID })'"><i class="fa fa-pencil" aria-hidden="true"></i></button><br />
+                                <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", new { id = item.ID })'"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                               
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.ProductCode)
@@ -83,19 +87,13 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.ProductType.ProductTypeName)
                             </td>
-                            <td>
-
-                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                            </td>
+                           
                         </tr>
                     }
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
 </div>
 
 @section scripts {

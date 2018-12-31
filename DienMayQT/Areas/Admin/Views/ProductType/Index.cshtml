@@ -5,10 +5,8 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
-
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Create")'"><i class="fa fa-plus" aria-hidden="true"></i> Thêm mới</button>
 </p>
 <div class="card mb-3">
     <div class="card-header">

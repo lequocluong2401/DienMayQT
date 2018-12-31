@@ -52,7 +52,12 @@ namespace DienMayQT.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return View(cashBill);
+
+            var model = new KhuModels();
+            model.Product = db.Product.ToList();
+            model.ProductType = db.ProductType.ToList();
+            model.Cashbill = cashBill;
+            return View(model);
         }
 
         // GET: Admin/CashBillsAdmin/Create
