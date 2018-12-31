@@ -17,13 +17,9 @@ namespace DienMayQT.Areas.Admin.Controllers
 
         private void Check(InstallmentBill model)
         {
-<<<<<<< HEAD
-            //if (model.BillCode.Length < 1)
-            //    ModelState.AddModelError("BillCode", "Mã hóa đơn phải dài hơn 1 kí từ");
+
             if (model.CustomerID > 30)
-                ModelState.AddModelError("CustomerID", "Mã khách hàng phải ít hơn 30 kí tự!");
-=======
-            
+
             if (model.CustomerID > 20)
                 ModelState.AddModelError("CustomerID", "Mã khách hàng phải ít hơn 20 kí tự!");
             if (model.Customer.CustomerName.Length > 50)
@@ -33,7 +29,7 @@ namespace DienMayQT.Areas.Admin.Controllers
                 ModelState.AddModelError("YearOfBirth", "Năm sinh của khách hàng phải lớn hơn 0!");
             if (model.Customer.PhoneNumber.Length <= 0)
                 ModelState.AddModelError("PhoneNumber", "Số điện thoại phải nhiều hơn 0 kí tự!");
->>>>>>> 966e81826e24a555c6839cf21a0bc69b10353c5a
+
             //if (model.Date)
             //    ModelState.AddModelError("Shipper", "Tên Shipper phải ít hơn 30 kí tự!");
             if (model.Customer.Address.Length > 100)
