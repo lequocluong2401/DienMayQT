@@ -16,20 +16,26 @@ namespace DienMayQT.Areas.Admin.Controllers
 
         private void Check(CashBill model)
         {
-            //if (model.BillCode)
-            //    ModelState.AddModelError("GiaGoc", "");
-            if (model.CustomerName.Length > 30)
-                ModelState.AddModelError("CustomerName", "Tên khách hàng phải ít hơn 30 kí tự!");
+            if (model.CustomerName.Length > 50)
+                ModelState.AddModelError("CustomerName", "Tên khách hàng phải ngắn hơn 50 kí tự!");
             if (model.PhoneNumber.Length < 10)
                 ModelState.AddModelError("PhoneNumber", "Số điện thoại phải nhiều hơn 10 kí tự!");
-            if (model.Address.Length < 10)
-                ModelState.AddModelError("Address", "Địa chỉ phải nhiều hơn 10 kí tự!");
-            //if (model.Date)
-            //    ModelState.AddModelError("SoLuongTon", "Số lượng tồn phải lớn hơn 0!");
-            if (model.Shipper.Length > 30)
-                ModelState.AddModelError("Shipper", "Tên Shipper phải ít hơn 30 kí tự!");
+            if (model.Address.Length > 100)
+                ModelState.AddModelError("Address", "Địa chỉ phải ngắn hơn 100 kí tự!");
+            if (model.Shipper.Length > 50)
+                ModelState.AddModelError("Shipper", "Tên Shipper phải ngắn hơn 50 kí tự!");
             if (model.Note.Length > 100)
-                ModelState.AddModelError("Note", "Ghi chú phải ít hơn 100 kí tự!");
+                ModelState.AddModelError("Note", "Ghi chú phải ngắn hơn 100 kí tự!");
+
+            //if (model.ProductID > 20)
+            //    ModelState.AddModelError("ProductID", "Mã sản phẩm phải ngắn hơn 20 kí tự!");
+            //if (model.ProductName > 50)
+            //    ModelState.AddModelError("ProductName", "Tên sản phẩm phải ngắn hơn 50 kí tự!");
+            //if (model.Quantity <= 0)
+            //    ModelState.AddModelError("Quantity", "Số lượng phải lớn hơn 0!");
+            //if (model.SalePrice <= 0)
+            //    ModelState.AddModelError("SalePrice", "Giá bán phải lớn hơn 0!");
+
             if (model.GrandTotal < 0)
                 ModelState.AddModelError("GrandTotal", "Tổng giá tiền phải lớn hơn 0!");
         }
