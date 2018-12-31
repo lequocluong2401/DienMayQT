@@ -33,15 +33,10 @@
     </div>
 
     <div class="form-group">
-        @*@Html.LabelFor(model => model.ProductTypeID, "Loại", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.ProductTypeID, (IEnumerable<SelectListItem>)ViewData["ProductTypeID"], new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ProductTypeID)
-            </div>*@
         <div class="input-group mb-3">
             @Html.LabelFor(model => model.ProductTypeID, "ProductTypeID", new { @class = "control-label col-md-2" }) :
             <div class="col-md-10">
-                @Html.DropDownList("ProductTypeID", null, "ID", "ProductTypeName"))
+                @Html.DropDownList("ProductTypeID", null, "ID", "ProductTypeName")
                 @Html.ValidationMessageFor(model => model.ProductTypeID)
             </div>
         </div>

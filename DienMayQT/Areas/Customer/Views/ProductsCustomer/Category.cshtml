@@ -7,7 +7,7 @@
 <!-- Custom styles for this template -->
 <link href="~/Content/css/thumbnail-gallery.css" rel="stylesheet">
 
-<h1 class="my-4 text-center text-lg-left">Mặt Hàng gì đó</h1>
+<h1 class="my-4 text-center text-lg-left">Mặt Hàng @Model.Category.ProductTypeName</h1>
 
 <div class="row text-center text-lg-left">
     @foreach (var item in Model.Product.OrderByDescending(i => i.ID))
@@ -17,8 +17,10 @@
             <div class="col-md-3 col-sm-6 mb-4">
                 <a href="#">
                     <img class="img-fluid" src="@Url.Action("GetImgSrc", new { id = item.ID })" />
-                    @Html.DisplayFor(modelItem => item.ProductName)
+                    @Html.DisplayFor(modelItem => item.ProductName) |
+                    @Html.ActionLink("Chi Tiết", "Details", new { id = item.ID })
                 </a>
+
                 <br>
                 @Html.FormatValue(item.SalePrice, "{0:0,0} vnđ")
             </div>

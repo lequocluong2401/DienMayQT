@@ -11,5 +11,6 @@ namespace DienMayQT.Models
         public IEnumerable<ProductType> ProductType { get; set; }
         public ProductType Category { get; set; }
         public Product Product1 { get; set; }
-    }
+        public CashBill Cashbill { get; set; }
+    } 
 }

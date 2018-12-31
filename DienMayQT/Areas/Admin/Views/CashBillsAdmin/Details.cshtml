@@ -1,4 +1,4 @@
-﻿@model DienMayQT.Models.CashBill
+﻿@model DienMayQT.Models.KhuModels
 
 @{
     ViewBag.Title = "Details";
@@ -12,72 +12,79 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.BillCode)
+            @Html.DisplayNameFor(model => model.Cashbill.BillCode)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BillCode)
+            @Html.DisplayFor(model => model.Cashbill.BillCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product1.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product1.ProductName)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Cashbill.CustomerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cashbill.CustomerName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CustomerName)
+            @Html.DisplayNameFor(model => model.Cashbill.PhoneNumber)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CustomerName)
+            @Html.DisplayFor(model => model.Cashbill.PhoneNumber)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
+            @Html.DisplayNameFor(model => model.Cashbill.Address)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
+            @Html.DisplayFor(model => model.Cashbill.Address)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Address)
+            @Html.DisplayNameFor(model => model.Cashbill.Date)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Address)
+            @Html.DisplayFor(model => model.Cashbill.Date)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Date)
+            @Html.DisplayNameFor(model => model.Cashbill.Shipper)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Date)
+            @Html.DisplayFor(model => model.Cashbill.Shipper)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Shipper)
+            @Html.DisplayNameFor(model => model.Cashbill.Note)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Shipper)
+            @Html.DisplayFor(model => model.Cashbill.Note)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Note)
+            @Html.DisplayNameFor(model => model.Cashbill.GrandTotal)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Note)
+            @Html.DisplayFor(model => model.Cashbill.GrandTotal)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GrandTotal)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GrandTotal)
-        </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Cashbill.ID }) |
+    @Html.ActionLink("Print", "Print") |
     @Html.ActionLink("Back to List", "Index")
 </p>

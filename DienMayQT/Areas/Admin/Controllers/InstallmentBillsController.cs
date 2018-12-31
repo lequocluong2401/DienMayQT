@@ -17,26 +17,52 @@ namespace DienMayQT.Areas.Admin.Controllers
 
         private void Check(InstallmentBill model)
         {
+<<<<<<< HEAD
             //if (model.BillCode.Length < 1)
             //    ModelState.AddModelError("BillCode", "Mã hóa đơn phải dài hơn 1 kí từ");
             if (model.CustomerID > 30)
                 ModelState.AddModelError("CustomerID", "Mã khách hàng phải ít hơn 30 kí tự!");
+=======
+            
+            if (model.CustomerID > 20)
+                ModelState.AddModelError("CustomerID", "Mã khách hàng phải ít hơn 20 kí tự!");
+            if (model.Customer.CustomerName.Length > 50)
+
+                ModelState.AddModelError("CustomerName", "Tên khách hàng phải ít hơn 50 kí tự!");
+            if (model.Customer.YearOfBirth <= 0)
+                ModelState.AddModelError("YearOfBirth", "Năm sinh của khách hàng phải lớn hơn 0!");
+            if (model.Customer.PhoneNumber.Length <= 0)
+                ModelState.AddModelError("PhoneNumber", "Số điện thoại phải nhiều hơn 0 kí tự!");
+>>>>>>> 966e81826e24a555c6839cf21a0bc69b10353c5a
             //if (model.Date)
-            //    ModelState.AddModelError("SoLuongTon", "Số lượng tồn phải lớn hơn 0!");
-            if (model.Shipper.Length > 30)
-                ModelState.AddModelError("Shipper", "Tên Shipper phải ít hơn 30 kí tự!");
+            //    ModelState.AddModelError("Shipper", "Tên Shipper phải ít hơn 30 kí tự!");
+            if (model.Customer.Address.Length > 100)
+                ModelState.AddModelError("Address", "Địa chỉ phải ít hơn 100 kí tự!");
+
+            if (model.Shipper.Length > 50)
+                ModelState.AddModelError("Shipper", "Tên Shipper phải ít hơn 50 kí tự!");
             if (model.Note.Length > 100)
                 ModelState.AddModelError("Note", "Ghi chú phải ít hơn 100 kí tự!");
-            if (model.Method.Length < 5)
-                ModelState.AddModelError("Method", "Hình thức thanh toán phải nhiều hơn 10 kí tự!");
+            //if (model.Method < 5)
+            //    ModelState.AddModelError("Method", "Hình thức thanh toán phải nhiều hơn 10 kí tự!");
             //if (model.Period < 1)
             //    ModelState.AddModelError("Period", "Chu kì phải nhiều hơn 1!");
-            if (model.GrandTotal < 0)
-                ModelState.AddModelError("GrandTotal", "Tổng giá tiền phải lớn hơn 0!");
-            //if (model.Taken < 0)
-            //    ModelState.AddModelError("Taken", "Tổng giá tiền phải lớn hơn 0!");
-            //if (model.Remain < 0)
-            //    ModelState.AddModelError("Remain", "Tổng giá tiền phải lớn hơn 0!");
+            //if (model.ProductCode > 20)
+
+            //    ModelState.AddModelError("ProductCode", "Mã sản phẩm phải ngắn hơn 20 kí tự!");
+            //if (model.ProductName > 50)
+            //    ModelState.AddModelError("ProductName", "Tên sản phẩm phải ngắn hơn 50 kí tự!");
+            //if (model.Quantity <= 0)
+            //    ModelState.AddModelError("Quantity", "Số lượng phải lớn hơn 0!");
+            //if (model.InstallmentPrice <= 0)
+            //    ModelState.AddModelError("InstallmentPrice", "Giá bán phải lớn hơn 0!");
+
+            if (model.GrandTotal <= 0)
+                ModelState.AddModelError("GrandTotal", "Tổng số tiền thanh toán phải lớn hơn 0!");
+            if (model.Taken <= 0)
+                ModelState.AddModelError("Taken", "Tổng số tiền đã đưa phải lớn hơn 0!");
+            if (model.Remain <= 0)
+                ModelState.AddModelError("Remain", "Tổng số tiền còn lại phải lớn hơn 0!");
         }
 
         // GET: Admin/InstallmentBills

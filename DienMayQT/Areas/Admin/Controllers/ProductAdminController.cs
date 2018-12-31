@@ -17,6 +17,20 @@ namespace DienMayQT.Areas.Admin.Controllers
     {
         DmQT06Entities1 db = new DmQT06Entities1();
         //
+        private void CheckBangSanPham(Product model)
+        {
+            if (model.ProductName.Length > 50)
+                ModelState.AddModelError("ProductName", "Tên sản phẩm phải ngắn hơn 50 kí tự!");
+            if (model.OriginPrice <= 0)
+                ModelState.AddModelError("OriginPrice", "Giá gốc phải lớn hơn 0!");
+            if (model.SalePrice < model.OriginPrice)
+                ModelState.AddModelError("SalePrice", "Giá bán phải lớn hơn giá gốc!");
+            if (model.InstallmentPrice < model.OriginPrice)
+                ModelState.AddModelError("InstallmentPrice", "Giá góp phải lớn hơn giá gốc!");
+            if (model.Quantity <= 0)
+                ModelState.AddModelError("Quantity", "Số lượng phải lớn hơn 0");
+
+        }
         // GET: /Admin/ProductAdmin/
         public ActionResult Index()
         {
@@ -80,17 +94,7 @@ namespace DienMayQT.Areas.Admin.Controllers
             ViewBag.ProductTypeID = new SelectList(db.ProductType, "ID", "ProductTypeName", model.ProductTypeID);
             return View(model);
         }
-        private void CheckBangSanPham(Product model)
-        {
-            if (model.OriginPrice < 0)
-                ModelState.AddModelError("OriginPrice", "Giá gốc phải lớn hơn 0!");
-            if (model.SalePrice < model.OriginPrice)
-                ModelState.AddModelError("SalePrice", "Giá bán phải lớn hơn giá gốc!");
-            if (model.InstallmentPrice < model.OriginPrice)
-                ModelState.AddModelError("InstallmentPrice", "Giá góp phải lớn hơn giá gốc!");
-            if (model.Quantity < 0)
-                ModelState.AddModelError("Quantity", "Số lượng phải lớn hơn 0");
-        }
+        
 
         public ActionResult Edit(int id)
         {
