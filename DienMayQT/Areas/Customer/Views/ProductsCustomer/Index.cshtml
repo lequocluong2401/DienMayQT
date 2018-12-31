@@ -13,11 +13,17 @@
 
     <div class="col-md-8">
         <img class="img-fluid" src="" alt="">
+@foreach (var item in Model.Product.OrderByDescending(i => i.ID))
+{
+        <img class="img-fluid" src="@Url.Action("GetImgSrc", new { id = item.ID })" />
+        break;
+}
     </div>
 
     <div class="col-md-4">
         <h3 class="my-3">Quảng Cáo</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae harum incidunt neque, nesciunt aperiam ratione deleniti aliquid, iusto nemo est debitis doloremque natus dolorem obcaecati officia corporis. Architecto sunt, quibusdam.</p>
+        <img src="http://sohanews.sohacdn.com/thumb_w/660/2017/photo-1-1484297435002-32-89-640-1067-crop-1484297684284.jpg" width="100%"/>
+        
         <h3 class="my-3">Khuyến Mãi Hiện Có</h3>
         <ul>
             <li>Lorem Ipsum</li>
