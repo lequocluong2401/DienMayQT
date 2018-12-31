@@ -319,11 +319,6 @@
     <Content Include="Areas\Admin\Views\Home\Login.cshtml" />
     <Content Include="Areas\Admin\Views\Login\Login.cshtml" />
     <Content Include="Areas\Admin\Views\Acc\Login.cshtml" />
-    <Content Include="Areas\Admin\Views\CashBillsAdmin\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\CashBillsAdmin\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\CashBillsAdmin\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\CashBillsAdmin\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\CashBillsAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\InstallmentBills\Create.cshtml" />
     <Content Include="Areas\Admin\Views\InstallmentBills\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\InstallmentBills\Details.cshtml" />
