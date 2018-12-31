@@ -36,6 +36,8 @@ namespace DienMayQT.Areas.Admin.Controllers
         {
         
             var product = db.Product.OrderByDescending(x => x.ID).ToList();
+
+           
             if (Session["Username"] != null)
             {
                 return View(product);
