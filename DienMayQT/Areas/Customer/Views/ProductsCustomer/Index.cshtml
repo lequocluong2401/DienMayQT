@@ -38,8 +38,13 @@
 <!-- Related Projects Row -->
 <h3 class="my-4">Những Mặt Hàng Mới Nhất</h3>
 <div class="row">
+    @{ int RecommendCount = 0; }
 @foreach (var item in Model.Product.OrderByDescending(i => i.ID))
-{ 
+{
+    if (RecommendCount > 7)
+    {
+        break;
+    }
     <div class="col-md-3 col-sm-6 mb-4">
             <img  class="img-fluid" src="@Url.Action("GetImgSrc", new { id = item.ID })"/>
         <br>  
@@ -49,6 +54,8 @@
         <br>
         @Html.FormatValue(item.SalePrice, "{0:0,0} VNĐ")
     </div>
+
+    RecommendCount++;
 }
 
 </div>
