@@ -10,7 +10,7 @@ using System.Transactions;
 using DienMayQT.Models;
 using System.Web.Security;
 using System.Data.Entity.Validation;
-
+using EntityState = System.Data.Entity.EntityState;
 
 namespace DienMayQT.Areas.Admin.Controllers
 {
@@ -20,9 +20,17 @@ namespace DienMayQT.Areas.Admin.Controllers
         DmQT06Entities1 db = new DmQT06Entities1();
         public ActionResult Index()
         {
-            var acc = db.Account.OrderByDescending(x => x.ID).ToList();
-           
+            if (Session["Username"] != null)
+            {
+                var acc = db.Account.OrderByDescending(x => x.ID).ToList();
+
                 return View(acc);
+            }
+            else
+            {
+                return RedirectToAction("Login", "ProductAdmin", new { area = "Admin" });
+            }
+           
        
         }
         public ActionResult Create()

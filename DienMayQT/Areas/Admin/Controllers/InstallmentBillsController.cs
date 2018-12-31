@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DienMayQT.Models;
+using EntityState = System.Data.Entity.EntityState;
 
 namespace DienMayQT.Areas.Admin.Controllers
 {
@@ -16,8 +17,8 @@ namespace DienMayQT.Areas.Admin.Controllers
 
         private void Check(InstallmentBill model)
         {
-            if (model.BillCode.Length < 1)
-                ModelState.AddModelError("BillCode", "Mã hóa đơn phải dài hơn 1 kí từ");
+            //if (model.BillCode.Length < 1)
+            //    ModelState.AddModelError("BillCode", "Mã hóa đơn phải dài hơn 1 kí từ");
             if (model.CustomerID > 30)
                 ModelState.AddModelError("CustomerID", "Mã khách hàng phải ít hơn 30 kí tự!");
             //if (model.Date)
@@ -45,6 +46,7 @@ namespace DienMayQT.Areas.Admin.Controllers
             return View(installmentBills.ToList());
         }
 
+        
         // GET: Admin/InstallmentBills/Details/5
         public ActionResult Details(int? id)
         {
