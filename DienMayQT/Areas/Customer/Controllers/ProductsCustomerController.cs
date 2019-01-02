@@ -30,6 +30,20 @@ namespace DienMayQT.Areas.Customer.Controllers
             return File(path, "images");
         }
 
+        // SEARCH
+        [HttpGet]
+        public ActionResult Search(String search)
+        {
+            var model = new KhuModels();
+
+            var result = model.Product = db.Product.Where(i => i.ProductName.Contains(search));
+            model.ProductType = db.ProductType.ToList();
+            model.search = search;
+            model.searchNumber = result.Count();
+            return View(model);
+        }
+        
+
         public ActionResult Category(int id)
         {
             if (id == null)

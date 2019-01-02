@@ -14,6 +14,7 @@
     <meta name="author" content="">
 
     <!-- Bootstrap core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet">
     <style>
         .dropdown:hover .dropdown-menu.dropdown-menu-right {
@@ -27,9 +28,24 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="/">Điện Máy Quyết Tiến</a>
+
+            <div class="input-group" style="max-width: 250px;">
+                <form method="get" class="form-inline" action="/Customer/ProductsCustomer/Search">
+
+                    <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm..." name="search" id="search" aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-default" type="submit" style="height: 100%;">
+
+                            Tìm
+                        </button>
+                    </div>
+                </form>
+            </div>
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
@@ -38,7 +54,7 @@
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Danh mục
                         </a>
@@ -49,13 +65,13 @@
                             }                        
                         </div>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="/Customer/Contact">Liên hệ</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="/Customer/AboutUs">Về chúng tôi</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="/Admin/ProductAdmin/Login">Đăng Nhập</a>
                     </li>
                 </ul>

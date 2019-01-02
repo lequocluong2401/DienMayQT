@@ -12,5 +12,7 @@ namespace DienMayQT.Models
         public ProductType Category { get; set; }
         public Product Product1 { get; set; }
         public CashBill Cashbill { get; set; }
+        public String search { get; set; }
+        public int searchNumber { get; set; }
     } 
 }

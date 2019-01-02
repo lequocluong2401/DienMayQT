@@ -30,12 +30,12 @@ namespace DienMayQT_Test
             session.Setup(s => s["Username"]).Returns("abc");
 
             var result = controller.Index() as ViewResult;
-            var db = new ();
+            var db = new DmQT06Entities1();
 
 
             //Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result.Model, typeof(List<CashBill>));
-            Assert.AreEqual(db.CashBills.Count(), ((List<CashBill>)result.Model).Count);
+            Assert.AreEqual(db.CashBill.Count(), ((List<CashBill>)result.Model).Count);
 
             session.Setup(s => s["Username"]).Returns(null);
             var redirect = controller.Index() as RedirectToRouteResult;
